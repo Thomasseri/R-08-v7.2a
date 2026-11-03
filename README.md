@@ -1,3 +1,8 @@
+
+<p align="center">
+  <img src="assets/r08_logo.jpg" width="320" alt="Sentinel R08 — Pocket Core" style="border-radius: 16px;" />
+</p>
+
 # 🌐 Sentinel R-08 v7.2a (DA ZERO) — 51.6M Geodesic Language Model
 
 [![Official Site](https://img.shields.io/badge/Sito%20Ufficiale-sentinelhub.eu-007acc.svg)](https://www.sentinelhub.eu)
