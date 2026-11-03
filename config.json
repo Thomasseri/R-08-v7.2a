@@ -33,5 +33,8 @@
     "kv_cache_memory_512_ctx": "0.8 MB",
     "energy_consumption_per_tok": "2.40 mJ",
     "repetition_loops": "Eliminated (0%)"
-  }
+  },
+  "license": "R08-Non-Commercial-Ethical-License-v2.0",
+  "jurisdiction": "Court of Milan (Sezione Specializzata in Materia di Impresa), Italy",
+  "prohibited_uses": "Commercial, Military, Defense, Clean-Room Reverse Engineering, Model Distillation"
 }
