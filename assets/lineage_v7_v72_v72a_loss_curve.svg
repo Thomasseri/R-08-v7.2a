@@ -1,0 +1,125 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 430" width="100%" height="100%" style="background:#0b1120; border-radius:14px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <defs>
+    <linearGradient id="grad-v72a" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#10b981" stop-opacity="0.28"/>
+      <stop offset="100%" stop-color="#10b981" stop-opacity="0.0"/>
+    </linearGradient>
+    <filter id="glow-line" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-color="#10b981" flood-opacity="0.4"/>
+    </filter>
+  </defs>
+
+  <!-- Title & Subtitle -->
+  <text x="40" y="38" fill="#f8fafc" font-size="18" font-weight="bold">Confronto di Lineage: Sentinel R-08 v7 vs v7.2 vs v7.2a</text>
+  <text x="40" y="60" fill="#94a3b8" font-size="12">Convergenza Pretraining su Chinchilla Mix (Batch 16, Seq-Len 256) · Autore: Thomas Seri (Sentinel)</text>
+
+  <!-- Legend -->
+  <g transform="translate(40, 84)" font-size="12" font-weight="600">
+    <!-- v7 -->
+    <line x1="0" y1="0" x2="24" y2="0" stroke="#3b82f6" stroke-width="2.8"/>
+    <circle cx="12" cy="0" r="4" fill="#3b82f6"/>
+    <text x="32" y="4" fill="#60a5fa">R-08 v7.0 (44.6M · 1 Hub)</text>
+
+    <!-- v7.2 -->
+    <line x1="240" y1="0" x2="264" y2="0" stroke="#a855f7" stroke-width="2.8" stroke-dasharray="5 3"/>
+    <circle cx="252" cy="0" r="4" fill="#a855f7"/>
+    <text x="272" y="4" fill="#c084fc">R-08 v7.2 Warmstart (51.6M · 12 Hub)</text>
+
+    <!-- v7.2a -->
+    <line x1="530" y1="0" x2="554" y2="0" stroke="#10b981" stroke-width="3.5"/>
+    <circle cx="542" cy="0" r="4.5" fill="#10b981"/>
+    <text x="562" y="4" fill="#34d399">R-08 v7.2a DA ZERO (51.6M · 12 Hub)</text>
+  </g>
+
+  <!-- Grid lines -->
+  <g stroke="#1e293b" stroke-width="1" stroke-dasharray="4 4">
+    <!-- Y: 2.00, 1.80, 1.60, 1.40, 1.20 -->
+    <line x1="80" y1="120" x2="780" y2="120"/>
+    <line x1="80" y1="171" x2="780" y2="171"/>
+    <line x1="80" y1="222" x2="780" y2="222"/>
+    <line x1="80" y1="273" x2="780" y2="273"/>
+    <line x1="80" y1="324" x2="780" y2="324"/>
+
+    <!-- Vertical step lines -->
+    <line x1="110" y1="110" x2="110" y2="350"/>
+    <line x1="235" y1="110" x2="235" y2="350"/>
+    <line x1="360" y1="110" x2="360" y2="350"/>
+    <line x1="485" y1="110" x2="485" y2="350"/>
+    <line x1="610" y1="110" x2="610" y2="350"/>
+    <line x1="735" y1="110" x2="735" y2="350"/>
+  </g>
+
+  <!-- Benchmark Reference Target: v7 a 100k step = 1.2872 (y = 302) -->
+  <line x1="80" y1="302" x2="780" y2="302" stroke="#10b981" stroke-width="1.2" stroke-dasharray="3 3" stroke-opacity="0.5"/>
+  <text x="775" y="296" text-anchor="end" fill="#10b981" font-size="10" font-weight="600">Traguardo R-08 v7 @ 100.000 step (1.2872)</text>
+
+  <!-- Axes -->
+  <line x1="80" y1="350" x2="780" y2="350" stroke="#475569" stroke-width="1.5"/>
+  <line x1="80" y1="110" x2="80" y2="350" stroke="#475569" stroke-width="1.5"/>
+
+  <!-- Y Labels -->
+  <g fill="#94a3b8" font-size="11" font-family="monospace" text-anchor="end">
+    <text x="72" y="124">2.00</text>
+    <text x="72" y="175">1.80</text>
+    <text x="72" y="226">1.60</text>
+    <text x="72" y="277">1.40</text>
+    <text x="72" y="328">1.20</text>
+  </g>
+
+  <!-- X Labels -->
+  <g fill="#94a3b8" font-size="11" text-anchor="middle">
+    <text x="110" y="372">Step 100</text>
+    <text x="235" y="372">10.000</text>
+    <text x="360" y="372">20.000</text>
+    <text x="485" y="372">30.000</text>
+    <text x="610" y="372">40.000</text>
+    <text x="735" y="372" font-weight="bold" fill="#f8fafc">50.000</text>
+    <text x="430" y="398" fill="#64748b" font-size="11">Numero di Step di Pretraining (Batch Size 16, Contesto 256)</text>
+  </g>
+
+  <!-- Line 1: v7.0 (Blue) -->
+  <polyline fill="none" stroke="#3b82f6" stroke-width="2.6" points="110,178 235,237 360,246 485,264 610,273 735,278"/>
+  <circle cx="110" cy="178" r="4" fill="#3b82f6"/>
+  <circle cx="235" cy="237" r="4" fill="#3b82f6"/>
+  <circle cx="360" cy="246" r="4" fill="#3b82f6"/>
+  <circle cx="485" cy="264" r="4" fill="#3b82f6"/>
+  <circle cx="610" cy="273" r="4" fill="#3b82f6"/>
+  <circle cx="735" cy="278" r="4.5" fill="#3b82f6"/>
+  <text x="742" y="275" fill="#60a5fa" font-size="11" font-weight="bold">1.3830</text>
+
+  <!-- Line 2: v7.2 Warmstart (Purple Dash) -->
+  <polyline fill="none" stroke="#a855f7" stroke-width="2.6" stroke-dasharray="5 3" points="110,217 235,271 360,294 485,301 610,309 735,315"/>
+  <circle cx="110" cy="217" r="4" fill="#a855f7"/>
+  <circle cx="235" cy="271" r="4" fill="#a855f7"/>
+  <circle cx="360" cy="294" r="4" fill="#a855f7"/>
+  <circle cx="485" cy="301" r="4" fill="#a855f7"/>
+  <circle cx="610" cy="309" r="4" fill="#a855f7"/>
+  <circle cx="735" cy="315" r="4.5" fill="#a855f7"/>
+  <text x="742" y="324" fill="#c084fc" font-size="11" font-weight="bold">1.2350</text>
+
+  <!-- Line 3: v7.2a DA ZERO (Emerald with Gradient Area & Filter) -->
+  <polygon points="110,118 235,253 360,283 485,289 610,301 735,305 735,350 110,350" fill="url(#grad-v72a)"/>
+  <polyline fill="none" stroke="#10b981" stroke-width="3.5" filter="url(#glow-line)" points="110,118 235,253 360,283 485,289 610,301 735,305"/>
+
+  <!-- Callout v7.2a Step 100 -->
+  <circle cx="110" cy="118" r="5" fill="#10b981"/>
+  <rect x="118" y="106" width="168" height="22" rx="4" fill="#064e3b" stroke="#10b981" stroke-width="1"/>
+  <text x="124" y="121" fill="#a7f3d0" font-size="10" font-weight="bold">Partito da 5.04 (Zero Puro!)</text>
+
+  <!-- Points v7.2a -->
+  <circle cx="235" cy="253" r="5" fill="#10b981"/>
+  <text x="235" y="244" text-anchor="middle" fill="#34d399" font-size="10.5" font-weight="bold">1.4808</text>
+
+  <circle cx="360" cy="283" r="5" fill="#10b981"/>
+  <circle cx="485" cy="289" r="5" fill="#10b981"/>
+  <circle cx="610" cy="301" r="5" fill="#10b981"/>
+  <circle cx="735" cy="305" r="6" fill="#10b981"/>
+  <text x="742" y="303" fill="#34d399" font-size="11.5" font-weight="extrabold">1.2755 🏆</text>
+
+  <!-- Annotation box -->
+  <g transform="translate(420, 140)">
+    <rect width="320" height="42" rx="6" fill="#1e293b" stroke="#334155" stroke-width="1"/>
+    <text x="12" y="18" fill="#38bdf8" font-size="11" font-weight="bold">⚡ Efficienza Architetturale v7.2a</text>
+    <text x="12" y="32" fill="#cbd5e1" font-size="10.5">Batte v7 @ 100k (1.2872) già a 50k step con metà compute!</text>
+  </g>
+</svg>

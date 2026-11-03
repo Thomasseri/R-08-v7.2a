@@ -1,0 +1,37 @@
+{
+  "model_type": "sentinel_r08_geodesic_v7_2a",
+  "architectures": [
+    "CascadeMeshModelV7_2"
+  ],
+  "model_name": "Sentinel R-08 v7.2a DA ZERO",
+  "author": "Thomas Seri (Sentinel)",
+  "version": "7.2a",
+  "status": "Benchmark & Architecture Validation Release (Weights Withheld)",
+  "d_model": 256,
+  "d_hidden": 256,
+  "frequency": 2,
+  "num_faces": 80,
+  "stages": 3,
+  "max_seq_len": 256,
+  "n_attn_layers": 2,
+  "n_heads": 8,
+  "regional_hubs_per_stage": 12,
+  "pyramid_narrow": 128,
+  "pyramid_hidden": 512,
+  "causal_conv_kernel": 4,
+  "total_parameters": 51614115,
+  "pretrain_steps": 185000,
+  "pretrain_tokens": 740000000,
+  "pretrain_loss_final": 1.0469,
+  "midtrain_steps": 10000,
+  "midtrain_loss_final": 1.0428,
+  "benchmarks": {
+    "blimp_it_italian_accuracy": "82.51%",
+    "multiblimp_italian_accuracy": "76.71%",
+    "truthful_qa_facts_accuracy": "100.0%",
+    "truthful_qa_overall": "56.2%",
+    "kv_cache_memory_512_ctx": "0.8 MB",
+    "energy_consumption_per_tok": "2.40 mJ",
+    "repetition_loops": "Eliminated (0%)"
+  }
+}

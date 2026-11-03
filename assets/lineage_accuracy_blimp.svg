@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 850 380" width="100%" height="100%" style="background:#0b1120; border-radius:14px; font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;">
+  <!-- Title -->
+  <text x="40" y="38" fill="#f8fafc" font-size="18" font-weight="bold">Benchmark Linguistici & Sintattici: R-08 v7 vs v7.2 vs v7.2a</text>
+  <text x="40" y="60" fill="#94a3b8" font-size="12">Valutazione comparativa certificata su dataset linguistici della lingua italiana · Autore: Thomas Seri (Sentinel)</text>
+
+  <!-- Metric 1: BLiMP-IT (3481 coppie) -->
+  <g transform="translate(40, 95)">
+    <text x="0" y="0" fill="#f8fafc" font-size="13" font-weight="bold">BLiMP-IT: Sintassi & Grammatica Italiana (3.481 coppie standard)</text>
+    <text x="770" y="0" text-anchor="end" fill="#10b981" font-size="11" font-weight="bold">+1.56% Guadagno Netto</text>
+
+    <!-- Bar v7 -->
+    <g transform="translate(0, 18)">
+      <text x="0" y="15" fill="#94a3b8" font-size="11" font-weight="500">R-08 v7.0 (44.6M)</text>
+      <rect x="180" y="2" width="570" height="18" rx="4" fill="#1e293b"/>
+      <rect x="180" y="2" width="461.4" height="18" rx="4" fill="#3b82f6"/>
+      <text x="635" y="15" fill="#ffffff" font-size="11" font-weight="bold">80.95%</text>
+    </g>
+
+    <!-- Bar v7.2 -->
+    <g transform="translate(0, 44)">
+      <text x="0" y="15" fill="#c084fc" font-size="11" font-weight="500">R-08 v7.2 Warm (51.6M)</text>
+      <rect x="180" y="2" width="570" height="18" rx="4" fill="#1e293b"/>
+      <rect x="180" y="2" width="467.5" height="18" rx="4" fill="#a855f7"/>
+      <text x="641" y="15" fill="#ffffff" font-size="11" font-weight="bold">82.02%</text>
+    </g>
+
+    <!-- Bar v7.2a -->
+    <g transform="translate(0, 70)">
+      <text x="0" y="15" fill="#34d399" font-size="11" font-weight="bold">R-08 v7.2a DA ZERO (51.6M)</text>
+      <rect x="180" y="2" width="570" height="18" rx="4" fill="#1e293b"/>
+      <rect x="180" y="2" width="470.3" height="18" rx="4" fill="#10b981"/>
+      <text x="644" y="15" fill="#ffffff" font-size="11" font-weight="extrabold">82.51% 🏆</text>
+    </g>
+  </g>
+
+  <!-- Metric 2: MultiBLiMP (2916 coppie) -->
+  <g transform="translate(40, 225)">
+    <text x="0" y="0" fill="#f8fafc" font-size="13" font-weight="bold">MultiBLiMP Italiano: Concordanza Morfologica & Reggenza (2.916 coppie)</text>
+    <text x="770" y="0" text-anchor="end" fill="#10b981" font-size="11" font-weight="bold">+3.25% Record Storico</text>
+
+    <!-- Bar v7 -->
+    <g transform="translate(0, 18)">
+      <text x="0" y="15" fill="#94a3b8" font-size="11" font-weight="500">R-08 v7.0 (44.6M)</text>
+      <rect x="180" y="2" width="570" height="18" rx="4" fill="#1e293b"/>
+      <rect x="180" y="2" width="418.7" height="18" rx="4" fill="#3b82f6"/>
+      <text x="592" y="15" fill="#ffffff" font-size="11" font-weight="bold">73.46%</text>
+    </g>
+
+    <!-- Bar v7.2 -->
+    <g transform="translate(0, 44)">
+      <text x="0" y="15" fill="#c084fc" font-size="11" font-weight="500">R-08 v7.2 Warm (51.6M)</text>
+      <rect x="180" y="2" width="570" height="18" rx="4" fill="#1e293b"/>
+      <rect x="180" y="2" width="418.7" height="18" rx="4" fill="#a855f7"/>
+      <text x="592" y="15" fill="#ffffff" font-size="11" font-weight="bold">73.46%</text>
+    </g>
+
+    <!-- Bar v7.2a -->
+    <g transform="translate(0, 70)">
+      <text x="0" y="15" fill="#34d399" font-size="11" font-weight="bold">R-08 v7.2a DA ZERO (51.6M)</text>
+      <rect x="180" y="2" width="570" height="18" rx="4" fill="#1e293b"/>
+      <rect x="180" y="2" width="437.2" height="18" rx="4" fill="#10b981"/>
+      <text x="611" y="15" fill="#ffffff" font-size="11" font-weight="extrabold">76.71% 🏆</text>
+    </g>
+  </g>
+
+  <!-- Bottom Insight -->
+  <g transform="translate(40, 335)">
+    <rect width="770" height="30" rx="6" fill="#064e3b" fill-opacity="0.35" stroke="#10b981" stroke-opacity="0.4" stroke-width="1"/>
+    <text x="14" y="19" fill="#a7f3d0" font-size="11" font-weight="600">💡 Risultato: La combinazione 3 Sfere + 12 Hub Regionali Icosaedro ottiene la massima coerenza grammaticale partendo da zero assoluto.</text>
+  </g>
+</svg>
