@@ -1,0 +1,100 @@
+{
+  "name": "parole",
+  "size": 17908,
+  "path": "/Users/thomasseri/Desktop/columns/geodesic_mesh_nn/vocab_stages/01_parole_by_id.txt",
+  "meta": {
+    "min_word_freq": 3,
+    "n_candidates": 17902,
+    "source": "reconstructed_from_v1_pezzi",
+    "top": [
+      [
+        "ingredient",
+        32409
+      ],
+      [
+        "id",
+        22506
+      ],
+      [
+        "the",
+        17636
+      ],
+      [
+        "in",
+        13718
+      ],
+      [
+        "of",
+        12175
+      ],
+      [
+        "risposta",
+        11496
+      ],
+      [
+        "and",
+        11119
+      ],
+      [
+        "di",
+        10760
+      ],
+      [
+        "is",
+        10074
+      ],
+      [
+        "il",
+        7057
+      ],
+      [
+        "to",
+        6645
+      ],
+      [
+        "that",
+        6058
+      ],
+      [
+        "la",
+        6018
+      ],
+      [
+        "on",
+        5946
+      ],
+      [
+        "or",
+        5603
+      ],
+      [
+        "preparation",
+        5436
+      ],
+      [
+        "context",
+        4037
+      ],
+      [
+        "have",
+        3965
+      ],
+      [
+        "as",
+        3952
+      ],
+      [
+        "con",
+        3823
+      ]
+    ]
+  },
+  "specials": [
+    "<|end|>",
+    "<|bos|>",
+    "<|eos|>",
+    "<|pad|>",
+    "<|unk|>",
+    "<|sep|>"
+  ]
+}

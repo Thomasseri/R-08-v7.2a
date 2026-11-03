@@ -1,0 +1,17 @@
+{
+  "name": "pezzi",
+  "size": 1251,
+  "path": "/Users/thomasseri/Desktop/columns/geodesic_mesh_nn/vocab_stages/00_pezzi_by_id.txt",
+  "meta": {
+    "source": "/Users/thomasseri/Desktop/columns/logs/goTommy2_vocab_by_id.txt",
+    "note": "goTommy2-scale ~1200 (1251)"
+  },
+  "specials": [
+    "<|end|>",
+    "<|bos|>",
+    "<|eos|>",
+    "<|pad|>",
+    "<|unk|>",
+    "<|sep|>"
+  ]
+}

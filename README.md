@@ -9,14 +9,47 @@
 > **Autore & Ideatore:** Thomas Seri (Sentinel)  
 > **Ecosistema di Riferimento:** [Sentinel LifeOS](https://www.sentinelhub.eu)  
 > **Vocabolario Ufficiale Correlato:** [gpTommy 32k su GitHub](https://github.com/Thomasseri/gpTommy-32k) | [Hugging Face](https://huggingface.co/Tom2701/gpTommy-32k)  
-> **Stato di Rilascio:** 📊 **Pubblicazione Risultati Scientifici & Metriche di Laboratorio** (File sorgente di replica e pesi binari trattenuti).
+> **Stato di Rilascio:** 🚀 **Rilascio Ufficiale per Inferenza & Utilizzo** (Pesi `model.safetensors` e runtime di inferenza inclusi; script per replicare l'addestramento trattenuti).
 
 ---
 
 > [!IMPORTANT]
-> ### ⚡ NOTA DI RILASCIO: RISULTATI SCIENTIFICI E BENCHMARK (FILE DI REPLICA TRATTENUTI)
-> Questa pagina ufficiale presenta i risultati scientifici verificati, le curve di convergenza e i benchmark del modello **Sentinel R-08 v7.2a DA ZERO** (51.614.115 parametri).  
-> **I file sorgente per replicare l'addestramento e i pesi binari (`model.safetensors`) non sono inclusi pubblicamente**: vengono rilasciati esclusivamente i report di laboratorio e le evidenze comparative A/B.
+> ### ⚡ NOTA DI RILASCIO: UTILIZZO IN INFERENZA ABILITATO (PIPELINE DI TRAINING PROPRIETARIA)
+> Questa repository contiene tutto il necessario per **caricare e utilizzare subito in inferenza** il modello **Sentinel R-08 v7.2a DA ZERO** (51.614.115 parametri), inclusi il runtime geodetico e i pesi ufficiali `model.safetensors` (su Hugging Face e nelle Release GitHub).  
+> **I file sorgente per replicare da zero l'addestramento, gli ottimizzatori e le pipeline di creazione del dataset non sono inclusi pubblicamente** e restano riservati al laboratorio dell'autore.
+
+---
+
+## 💻 Come Usare subito Sentinel R-08 v7.2a (Inferenza Rapida)
+
+### 1. Requisiti
+```bash
+pip install torch safetensors huggingface_hub
+```
+
+### 2. Test Immediato con lo Script Incluso
+Se hai clonato il repository da Hugging Face (`git clone https://huggingface.co/Tom2701/R-08-v7.2a`) o scaricato `model.safetensors` dalla sezione **Releases** di GitHub nella cartella del progetto:
+```bash
+python test_inference_release.py
+```
+
+### 3. Utilizzo da Codice Python
+```python
+from modeling_geodesic import R08Model, R08Tokenizer
+
+tokenizer = R08Tokenizer.from_pretrained(".")
+model = R08Model.from_pretrained(".")
+
+risposta = model.generate(
+    prompt="La capitale d'Italia è",
+    tokenizer=tokenizer,
+    max_new_tokens=32,
+    temperature=0.7,
+    top_p=0.9,
+    repetition_penalty=1.15,
+)
+print(risposta)
+```
 
 ---
 

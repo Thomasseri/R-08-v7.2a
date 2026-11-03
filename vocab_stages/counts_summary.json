@@ -1,0 +1,10 @@
+{
+  "pipeline": "v1_pezzi → v2_parole(from pezzi) → v3_unioni(from v2)",
+  "n_word_types": 31186,
+  "n_bigram_types": 190363,
+  "n_trigram_types": 304771,
+  "parole_kept": 17902,
+  "unioni_kept": 20000,
+  "min_word_freq": 3,
+  "min_union_freq": 5
+}

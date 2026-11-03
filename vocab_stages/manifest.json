@@ -1,0 +1,25 @@
+{
+  "design": "multi_vocab_stages_cascade",
+  "note": "Tre id-space separati in SERIE: testo→V1 pezzi (~1200)→V2 parole→V3 unioni. NON encode greedy parallelo. ~1200 = scala goTommy2 (1251), non 1.2M.",
+  "stages": {
+    "0_pezzi": {
+      "path": "/Users/thomasseri/Desktop/columns/geodesic_mesh_nn/vocab_stages/00_pezzi_by_id.txt",
+      "size": 1251
+    },
+    "1_parole": {
+      "path": "/Users/thomasseri/Desktop/columns/geodesic_mesh_nn/vocab_stages/01_parole_by_id.txt",
+      "size": 17908
+    },
+    "2_unioni": {
+      "path": "/Users/thomasseri/Desktop/columns/geodesic_mesh_nn/vocab_stages/02_unioni_by_id.txt",
+      "size": 20006
+    }
+  },
+  "encode": "encode_cascade = encode_v1 → pass_to_v2 → pass_to_v3. Wiring train: 3 stadi in serie (emb/mesh per stadio), non stream paralleli.",
+  "api": {
+    "encode_v1": "text → pezzi_ids",
+    "pass_to_v2": "pezzi_ids → parole_ids (aggrega pezzi)",
+    "pass_to_v3": "parole surfaces → unioni (2/3 se frequenti)",
+    "encode_cascade": "encode_v1 → pass_to_v2 → pass_to_v3"
+  }
+}

@@ -1,0 +1,122 @@
+{
+  "name": "unioni",
+  "size": 20006,
+  "path": "/Users/thomasseri/Desktop/columns/geodesic_mesh_nn/vocab_stages/02_unioni_by_id.txt",
+  "meta": {
+    "min_union_freq": 5,
+    "n_candidates": 20000,
+    "source": "frequent_unions_on_v2_surfaces",
+    "n_trigram": 6295,
+    "n_bigram": 13705,
+    "top": [
+      [
+        "id w",
+        20700,
+        "bi"
+      ],
+      [
+        "ingredient id w",
+        16200,
+        "tri"
+      ],
+      [
+        "ingredient ingredient id",
+        16200,
+        "tri"
+      ],
+      [
+        "ingredient id",
+        16200,
+        "bi"
+      ],
+      [
+        "ingredient ingredient",
+        16200,
+        "bi"
+      ],
+      [
+        "id w ingredient",
+        15300,
+        "tri"
+      ],
+      [
+        "w ingredient ingredient",
+        15300,
+        "tri"
+      ],
+      [
+        "w ingredient",
+        15300,
+        "bi"
+      ],
+      [
+        "1 1",
+        9522,
+        "bi"
+      ],
+      [
+        "0 0",
+        8845,
+        "bi"
+      ],
+      [
+        "1 1 1",
+        8760,
+        "tri"
+      ],
+      [
+        "0 0 0",
+        6501,
+        "tri"
+      ],
+      [
+        "id w preparation",
+        4500,
+        "tri"
+      ],
+      [
+        "preparation id w",
+        4500,
+        "tri"
+      ],
+      [
+        "w preparation id",
+        4500,
+        "tri"
+      ],
+      [
+        "preparation id",
+        4500,
+        "bi"
+      ],
+      [
+        "w preparation",
+        4500,
+        "bi"
+      ],
+      [
+        "i don't",
+        3431,
+        "bi"
+      ],
+      [
+        "on that",
+        3431,
+        "bi"
+      ],
+      [
+        "a i",
+        3427,
+        "bi"
+      ]
+    ]
+  },
+  "specials": [
+    "<|end|>",
+    "<|bos|>",
+    "<|eos|>",
+    "<|pad|>",
+    "<|unk|>",
+    "<|sep|>"
+  ]
+}
