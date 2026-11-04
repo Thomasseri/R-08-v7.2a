@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="assets/r08_logo.jpg" width="320" alt="Sentinel R08 — Pocket Core" style="border-radius: 16px;" />
+ <img src="assets/r08_logo.jpg" width="320" alt="Sentinel R08 — Pocket Core" style="border-radius: 16px;" />
 </p>
 
 # 🌐 Sentinel R-08 v7.2a (DA ZERO) — 51.6M Geodesic Language Model
@@ -10,17 +10,17 @@
 [![Tokenizer](https://img.shields.io/badge/Tokenizer-gpTommy%2032k-blue.svg)](https://github.com/Thomasseri/gpTommy-32k)
 [![Autore](https://img.shields.io/badge/Autore-Thomas%20Seri%20(Sentinel)-orange.svg)](https://www.sentinelhub.eu)
 
-> **Architettura Geodetica a 3 Sfere Concentriche, 12 Hub Regionali dell'Icosaedro e Convoluzioni Causali 1D.**  
-> **Autore & Ideatore:** Thomas Seri (Sentinel)  
-> **Ecosistema di Riferimento:** [Sentinel LifeOS](https://www.sentinelhub.eu)  
-> **Vocabolario Ufficiale Correlato:** [gpTommy 32k su GitHub](https://github.com/Thomasseri/gpTommy-32k) | [Hugging Face](https://huggingface.co/SentinelHub/gpTommy-32k)  
+> **Architettura Geodetica a 3 Sfere Concentriche, 12 Hub Regionali dell'Icosaedro e Convoluzioni Causali 1D.** 
+> **Autore & Ideatore:** Thomas Seri (Sentinel) 
+> **Ecosistema di Riferimento:** [Sentinel LifeOS](https://www.sentinelhub.eu) 
+> **Vocabolario Ufficiale Correlato:** [gpTommy 32k su GitHub](https://github.com/Thomasseri/gpTommy-32k) | [Hugging Face](https://huggingface.co/SentinelHub/gpTommy-32k) 
 > **Stato di Rilascio:** 🚀 **Rilascio Ufficiale per Inferenza & Utilizzo** (Pesi `model.safetensors` e runtime di inferenza inclusi; script per replicare l'addestramento trattenuti).
 
 ---
 
 > [!IMPORTANT]
 > ### ⚡ NOTA DI RILASCIO: UTILIZZO IN INFERENZA ABILITATO (PIPELINE DI TRAINING PROPRIETARIA)
-> Questa repository contiene tutto il necessario per **caricare e utilizzare subito in inferenza** il modello **Sentinel R-08 v7.2a DA ZERO** (51.614.115 parametri), inclusi il runtime geodetico e i pesi ufficiali `model.safetensors` (su Hugging Face e nelle Release GitHub).  
+> Questa repository contiene tutto il necessario per **caricare e utilizzare subito in inferenza** il modello **Sentinel R-08 v7.2a DA ZERO** (51.614.115 parametri), inclusi il runtime geodetico e i pesi ufficiali `model.safetensors` (su Hugging Face e nelle Release GitHub). 
 > **I file sorgente per replicare da zero l'addestramento, gli ottimizzatori e le pipeline di creazione del dataset non sono inclusi pubblicamente** e restano riservati al laboratorio dell'autore.
 
 ---
@@ -46,12 +46,12 @@ tokenizer = R08Tokenizer.from_pretrained(".")
 model = R08Model.from_pretrained(".")
 
 risposta = model.generate(
-    prompt="La capitale d'Italia è",
-    tokenizer=tokenizer,
-    max_new_tokens=32,
-    temperature=0.7,
-    top_p=0.9,
-    repetition_penalty=1.15,
+  prompt="La capitale d'Italia è",
+  tokenizer=tokenizer,
+  max_new_tokens=32,
+  temperature=0.7,
+  top_p=0.9,
+  repetition_penalty=1.15,
 )
 print(risposta)
 ```
@@ -80,8 +80,8 @@ Addestrato **100% DA ZERO (Tabula Rasa, seed 1234)** per **185.000 step** (~740M
 | :--- | :--- |
 | **Architettura Neurale** | **Geodesic Pyramidal Mesh Network** (3 Sfere Concentriche, 12 Hub Regionali dell'Icosaedro, Convoluzioni Causali 1D $k=4$, soli 2 strati di attenzione densa) |
 | **Parametri Totali in `model.safetensors`** | **`51.975.444`** tensori totali salvati (composti da **`51.614.115` parametri neurali attivi** + **`361.329` buffer topologici** e indici di adiacenza dell'icosaedro geodetico) |
-| **Runtime di Esecuzione (Punto 3)** | **Motore Geometrico Nativo `modeling_geodesic.py`** (`trust_remote_code=True`). Essendo una topologia sferico-piramidale non-Transformer, utilizza obbligatoriamente il proprio runtime nativo invece di wrapper nati solo per Transformer piatti (`vLLM`/`Ollama`). |
-| **Finestra di Contesto & Roadmap `v7.2c`** | **`256 – 512` token nativi** (scalabile fino a **`2.048` token** in inferenza con soli `0,8 MB – 3,2 MB` di KV-Cache). *L'estensione nativa a contesto lungo **`8.192` token (`8K`)** è attualmente in fase di test di laboratorio con la prossima generazione **`Sentinel R-08 v7.2c "Il Maestro"` (`110M`)**.* |
+| **Runtime di Esecuzione ** | **Motore Geometrico Nativo `modeling_geodesic.py`** (`trust_remote_code=True`). Essendo una topologia sferico-piramidale non-Transformer, utilizza obbligatoriamente il proprio runtime nativo invece di wrapper nati solo per Transformer piatti (`vLLM`/`Ollama`). |
+| **Finestra di Contesto Operativa** | **`256 – 512` token nativi** (scalabile fino a **`2.048` token** in inferenza con soli `0,8 MB – 3,2 MB` di KV-Cache). |
 | **Throughput & Efficienza Energetica** | **`~2.850 – 3.020 tok/s`** in pretraining / **`~140 tok/s`** in generazione singola su Apple Silicon (MPS), con consumo di **`2,40 mJ/token`** e footprint RAM di **`~140 MB`**. |
 | **Confronto con Baseline Internazionali** | Testato in Zero-Shot diretto anche contro **`Pythia-70M` (`70.4M`)** e **`GPT-2 Base` (`124.4M`)**: sulle probe fattuali italiane di TruthfulQA Zero-Shot, `R-08` raggiunge il **`56,2% – 62,5%` (Fatti 4/4 100%)** contro il `50,0%` (livello casuale) di `Pythia-70M` e `GPT-2 124M`, occupando fino a **22× meno KV-Cache** (`0,8 MB` vs `18,0 MB` di GPT-2). |
 | **Lingua & Licenza** | Italiano (`it`) · **R08 Non-Commercial Research & Ethical License v2.0** (Foro Esclusivo di Milano) |
@@ -118,50 +118,50 @@ A differenza dei Transformer standard che accumulano strati densi identici (es. 
 
 ```
 [Sequenza Token Iniziale]
-          │
-          ▼
+     │
+     ▼
 ┌──────────────────────────────────────┐
-│  Attenzione Causale Iniziale (Layer 1)│
+│ Attenzione Causale Iniziale (Layer 1)│
 └──────────────────────────────────────┘
-          │
-          ▼
+     │
+     ▼
 ┌────────────────────────────────────────────────────────┐
-│  SFERA 1: Morfologia & Rappresentazione Lessicale      │
-│  - 80 Facce Geodetiche Icosaedriche Specializzate      │
-│  - 12 Hub Regionali dell'Icosaedro (Partizione Spaziale)│
+│ SFERA 1: Morfologia & Rappresentazione Lessicale   │
+│ - 80 Facce Geodetiche Icosaedriche Specializzate   │
+│ - 12 Hub Regionali dell'Icosaedro (Partizione Spaziale)│
 └────────────────────────────────────────────────────────┘
-          │
-          ▼
-   ═══════╡ Convoluzione Causale 1D (k=4, d=256) ╞═══════  (Zero Balbuzie)
-          │
-          ▼
+     │
+     ▼
+  ═══════╡ Convoluzione Causale 1D (k=4, d=256) ╞═══════ (Zero Balbuzie)
+     │
+     ▼
 ┌────────────────────────────────────────────────────────┐
-│  SFERA 2: Sintassi Regionale & Dipendenze Locali       │
-│  - 80 Facce Geodetiche Icosaedriche Specializzate      │
-│  - 12 Hub Regionali dell'Icosaedro                     │
+│ SFERA 2: Sintassi Regionale & Dipendenze Locali    │
+│ - 80 Facce Geodetiche Icosaedriche Specializzate   │
+│ - 12 Hub Regionali dell'Icosaedro           │
 └────────────────────────────────────────────────────────┘
-          │
-          ▼
-   ═══════╡ Convoluzione Causale 1D (k=4, d=256) ╞═══════  (Zero Balbuzie)
-          │
-          ▼
+     │
+     ▼
+  ═══════╡ Convoluzione Causale 1D (k=4, d=256) ╞═══════ (Zero Balbuzie)
+     │
+     ▼
 ┌────────────────────────────────────────────────────────┐
-│  SFERA 3: Semantica ad Alto Livello & Ragionamento     │
-│  - 80 Facce Geodetiche Icosaedriche Specializzate      │
-│  - 12 Hub Regionali dell'Icosaedro                     │
+│ SFERA 3: Semantica ad Alto Livello & Ragionamento   │
+│ - 80 Facce Geodetiche Icosaedriche Specializzate   │
+│ - 12 Hub Regionali dell'Icosaedro           │
 └────────────────────────────────────────────────────────┘
-          │
-          ▼
+     │
+     ▼
 ┌──────────────────────────────────────┐
-│  Integrazione Multi-Scala Residuale   │  LN(h1) + LN(h2) + LN(h3)
+│ Integrazione Multi-Scala Residuale  │ LN(h1) + LN(h2) + LN(h3)
 └──────────────────────────────────────┘
-          │
-          ▼
+     │
+     ▼
 ┌──────────────────────────────────────┐
-│  Attenzione Causale Finale (Layer 2) │
+│ Attenzione Causale Finale (Layer 2) │
 └──────────────────────────────────────┘
-          │
-          ▼
+     │
+     ▼
 [Logits con Tanh Soft-Capping a 30.0]
 ```
 
