@@ -25,6 +25,14 @@
 
 ---
 
+> ### 💼 Investment, Compute Grants & Enterprise Licensing (Investimenti & Partnership Industriali)
+> 🇬🇧 **Sentinel** is scaling the **Geodesic Pyramidal Sphere Architecture (`R-08`)** from 50M to **110M–1B+ parameters**, backed by **18 industrial patent filings** (Non-Euclidean Geodesic Mesh, Isomorphic `SSvvv` Lexical-Voice Engine, Post-Quantum Tamper-Resistant Keystone Security, Edge & Autonomous Systems).  
+> **Open to Seed / Deep-Tech Investment, GPU/TPU Compute Grants, and Enterprise R&D Partnerships.**  
+> 🇮🇹 **Aperto a Investimenti Seed / Deep-Tech, Grant Computazionali GPU/TPU e Licenze Industriali Enterprise.**  
+> 📩 **Contact Founder & Inventor Thomas Seri:** 🌐 **[www.sentinelhub.eu](https://www.sentinelhub.eu)** | 🐙 **[GitHub (@Thomasseri)](https://github.com/Thomasseri)** | 🤗 **[Hugging Face (@SentinelHub)](https://huggingface.co/SentinelHub)** | 💬 **[Open an Inquiry / Issue](https://github.com/Thomasseri/R-08/issues/new)**
+
+---
+
 ## 💻 Come Usare subito Sentinel R-08 v7.2a (Inferenza Rapida)
 
 ### 1. Requisiti
