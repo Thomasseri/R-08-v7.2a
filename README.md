@@ -13,7 +13,7 @@
 > **Architettura Geodetica a 3 Sfere Concentriche, 12 Hub Regionali dell'Icosaedro e Convoluzioni Causali 1D.**  
 > **Autore & Ideatore:** Thomas Seri (Sentinel)  
 > **Ecosistema di Riferimento:** [Sentinel LifeOS](https://www.sentinelhub.eu)  
-> **Vocabolario Ufficiale Correlato:** [gpTommy 32k su GitHub](https://github.com/Thomasseri/gpTommy-32k) | [Hugging Face](https://huggingface.co/Tom2701/gpTommy-32k)  
+> **Vocabolario Ufficiale Correlato:** [gpTommy 32k su GitHub](https://github.com/Thomasseri/gpTommy-32k) | [Hugging Face](https://huggingface.co/SentinelHub/gpTommy-32k)  
 > **Stato di Rilascio:** 🚀 **Rilascio Ufficiale per Inferenza & Utilizzo** (Pesi `model.safetensors` e runtime di inferenza inclusi; script per replicare l'addestramento trattenuti).
 
 ---
@@ -33,7 +33,7 @@ pip install torch safetensors huggingface_hub
 ```
 
 ### 2. Test Immediato con lo Script Incluso
-Se hai clonato il repository da Hugging Face (`git clone https://huggingface.co/Tom2701/R-08-v7.2a`) o scaricato `model.safetensors` dalla sezione **Releases** di GitHub nella cartella del progetto:
+Se hai clonato il repository da Hugging Face (`git clone https://huggingface.co/SentinelHub/R-08-v7.2a`) o scaricato `model.safetensors` dalla sezione **Releases** di GitHub nella cartella del progetto:
 ```bash
 python test_inference_release.py
 ```
@@ -71,6 +71,20 @@ Addestrato **100% DA ZERO (Tabula Rasa, seed 1234)** per **185.000 step** (~740M
 | **Memoria KV-Cache (512 ctx)** | **0,8 MB** | **0,8 MB** | **0,8 MB** 🏆 | 5,6 MB | **-85,7% di traffico RAM (7× più leggero)** |
 | **Consumo Energetico (Apple Silicon MPS)** | **2,30 mJ / tok** | **2,40 mJ / tok** | **2,40 mJ / tok** 🏆 | 3,30 mJ / tok | **-27,3% di energia risparmiata** rispetto al Transformer |
 | **Footprint RAM Totale in Inferenza** | **~120 MB** | **~140 MB** | **~140 MB** 🏆 | ~240 MB | Esecuzione nativa istantanea anche su memorie **DDR3 / DDR4 / Edge** |
+
+---
+
+## 📋 Specifiche Tecniche Ufficiali & Architettura Hardware
+
+| Parametro Tecnico | Valore Certificato (`Sentinel R-08 v7.2a`) |
+| :--- | :--- |
+| **Architettura Neurale** | **Geodesic Pyramidal Mesh Network** (3 Sfere Concentriche, 12 Hub Regionali dell'Icosaedro, Convoluzioni Causali 1D $k=4$, soli 2 strati di attenzione densa) |
+| **Parametri Totali in `model.safetensors`** | **`51.975.444`** tensori totali salvati (composti da **`51.614.115` parametri neurali attivi** + **`361.329` buffer topologici** e indici di adiacenza dell'icosaedro geodetico) |
+| **Runtime di Esecuzione (Punto 3)** | **Motore Geometrico Nativo `modeling_geodesic.py`** (`trust_remote_code=True`). Essendo una topologia sferico-piramidale non-Transformer, utilizza obbligatoriamente il proprio runtime nativo invece di wrapper nati solo per Transformer piatti (`vLLM`/`Ollama`). |
+| **Finestra di Contesto & Roadmap `v7.2c`** | **`256 – 512` token nativi** (scalabile fino a **`2.048` token** in inferenza con soli `0,8 MB – 3,2 MB` di KV-Cache). *L'estensione nativa a contesto lungo **`8.192` token (`8K`)** è attualmente in fase di test di laboratorio con la prossima generazione **`Sentinel R-08 v7.2c "Il Maestro"` (`110M`)**.* |
+| **Throughput & Efficienza Energetica** | **`~2.850 – 3.020 tok/s`** in pretraining / **`~140 tok/s`** in generazione singola su Apple Silicon (MPS), con consumo di **`2,40 mJ/token`** e footprint RAM di **`~140 MB`**. |
+| **Confronto con Baseline Internazionali** | Testato in Zero-Shot diretto anche contro **`Pythia-70M` (`70.4M`)** e **`GPT-2 Base` (`124.4M`)**: sulle probe fattuali italiane di TruthfulQA Zero-Shot, `R-08` raggiunge il **`56,2% – 62,5%` (Fatti 4/4 100%)** contro il `50,0%` (livello casuale) di `Pythia-70M` e `GPT-2 124M`, occupando fino a **22× meno KV-Cache** (`0,8 MB` vs `18,0 MB` di GPT-2). |
+| **Lingua & Licenza** | Italiano (`it`) · **R08 Non-Commercial Research & Ethical License v2.0** (Foro Esclusivo di Milano) |
 
 ---
 
@@ -174,9 +188,9 @@ L'utilizzo dell'architettura e della documentazione di **Sentinel R-08 v7.2a** �
 ---
 
 ## 📌 Repository Correlati
-- 🌐 [Sentinel R-08 v7 (Repository Principale)](https://github.com/Thomasseri/R-08) | [Hugging Face](https://huggingface.co/Tom2701/R-08)
-- 🚀 [Sentinel R-08 v7.2 Warm-Start](https://github.com/Thomasseri/R-08-v7.2) | [Hugging Face](https://huggingface.co/Tom2701/R-08-v7.2)
-- 🔬 [Controllo A/B Transformer Baseline](https://github.com/Thomasseri/R-08-Transformer-Baseline) | [Hugging Face](https://huggingface.co/Tom2701/R-08-Transformer-Baseline)
+- 🌐 [Sentinel R-08 v7 (Repository Principale)](https://github.com/Thomasseri/R-08) | [Hugging Face](https://huggingface.co/SentinelHub/R-08)
+- 🚀 [Sentinel R-08 v7.2 Warm-Start](https://github.com/Thomasseri/R-08-v7.2) | [Hugging Face](https://huggingface.co/SentinelHub/R-08-v7.2)
+- 🔬 [Controllo A/B Transformer Baseline](https://github.com/Thomasseri/R-08-Transformer-Baseline) | [Hugging Face](https://huggingface.co/SentinelHub/R-08-Transformer-Baseline)
 
 ---
 *Creato con passione da Thomas Seri (Sentinel) — 2026.*
