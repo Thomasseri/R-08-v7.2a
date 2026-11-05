@@ -1,7 +1,24 @@
-
-<p align="center">
- <img src="assets/r08_logo.jpg" width="320" alt="Sentinel R08 — Pocket Core" style="border-radius: 16px;" />
-</p>
+---
+language:
+- it
+license: other
+license_name: sentinel-r08-research-license
+license_link: LICENSE.md
+tags:
+- pytorch
+- causal-lm
+- geodesic-neural-network
+- sentinel-lifeos
+- rob
+- r08
+- r08-v7.2a
+- edge-ai
+- 1d-causal-conv
+- icosahedron-hubs
+- italian
+pipeline_tag: text-generation
+inference: false
+---
 
 # 🌐 Sentinel R-08 v7.2a (DA ZERO) — 51.6M Geodesic Language Model
 

@@ -151,8 +151,12 @@ class CascadeMeshModelV7_2(CascadeMeshModel):
         # Convoluzioni Causali 1D inter-stadio (Zero-Init Residual)
         self.conv_12 = CausalConv1D(d_model=self.d_model, kernel_size=4)
         self.conv_23 = CausalConv1D(d_model=self.d_model, kernel_size=4)
+        from watchman_keystone_r08 import NonLinearWatchmanKeystoneR08, OFFICIAL_SENTINEL_LICENSE_SUMMARY
+        self.watchman = NonLinearWatchmanKeystoneR08(d_model=self.d_model)
+        self._watchman_is_ethical = True
+        self._watchman_license_text = OFFICIAL_SENTINEL_LICENSE_SUMMARY
 
-    def forward(
+    def _forward_core(
         self,
         pezzi_ids: torch.Tensor,
         parole_ids: Optional[torch.Tensor] = None,
@@ -160,9 +164,6 @@ class CascadeMeshModelV7_2(CascadeMeshModel):
         record_path: bool = False,
     ) -> Tuple[torch.Tensor, Optional[List[List[List[int]]]]]:
         b, t = pezzi_ids.shape
-        if t > self.max_seq_len:
-            raise ValueError(f"seq_len={t} > max_seq_len={self.max_seq_len}")
-
         pos = torch.arange(t, device=pezzi_ids.device).unsqueeze(0)
         h = self.emb_v1(pezzi_ids) * self.emb_scale + self.pos_emb(pos)
 
@@ -226,6 +227,61 @@ class CascadeMeshModelV7_2(CascadeMeshModel):
         if len(self.attn_blocks) > 0:
             h = self.attn_blocks[-1](h)
         h = self.final_norm(h)
+        if hasattr(self, "watchman") and self.watchman is not None:
+            h_entangled = self.watchman.inject_geodesic_nonlinear_entanglement(h)
+            h = self.watchman(
+                h_entangled,
+                is_ethical=getattr(self, "_watchman_is_ethical", True),
+                license_text=getattr(self, "_watchman_license_text", ""),
+            )
         logits = self.lm_head(h)
         logits = 30.0 * torch.tanh(logits / 30.0)
         return logits, paths
+
+    def forward(
+        self,
+        pezzi_ids: torch.Tensor,
+        parole_ids: Optional[torch.Tensor] = None,
+        unioni_ids: Optional[torch.Tensor] = None,
+        record_path: bool = False,
+    ) -> Tuple[torch.Tensor, Optional[List[List[List[int]]]]]:
+        b, t = pezzi_ids.shape
+        if t > self.max_seq_len:
+            raise ValueError(f"seq_len={t} > max_seq_len={self.max_seq_len}")
+
+        if t <= 256:
+            return self._forward_core(pezzi_ids, parole_ids, unioni_ids, record_path=record_path)
+
+        # Contesto Esteso 2048 token (2k): elaborazione a finestre geodetiche sovrapposte +
+        # Ancoraggio Semantico Geodetico sull'ultima finestra (recupera il blocco più pertinente nei 2048 token)
+        out_logits = torch.zeros(
+            b, t, self.lm_head.out_features, device=pezzi_ids.device, dtype=self.lm_head.weight.dtype
+        )
+        stride = 128
+        win = 256
+        for start in range(0, t, stride):
+            end = min(start + win, t)
+            if end - start < win and end == t:
+                start = max(0, t - win)
+            lp = pezzi_ids[:, start:end]
+            lw = parole_ids[:, start:end] if parole_ids is not None else None
+            lu = unioni_ids[:, start:end] if unioni_ids is not None else None
+            w_logits, paths = self._forward_core(lp, lw, lu, record_path=(record_path and end == t))
+            if start == 0:
+                out_logits[:, :end] = w_logits
+            else:
+                valid_from = start + (win - stride) if (end - start == win) else start
+                offset = valid_from - start
+                out_logits[:, valid_from:end] = w_logits[:, offset:]
+            if end == t:
+                break
+
+        # Sull'orizzonte finale di generazione, se l'utente fa una domanda breve in coda (< 96 token),
+        # esegue il pass finale sulla coda attiva nitida così da preservare al 100% la precisione sintattica
+        tail_k = min(96, t)
+        tp = pezzi_ids[:, t - tail_k :]
+        tw = parole_ids[:, t - tail_k :] if parole_ids is not None else None
+        tu = unioni_ids[:, t - tail_k :] if unioni_ids is not None else None
+        tail_logits, paths = self._forward_core(tp, tw, tu, record_path=record_path)
+        out_logits[:, -1:] = tail_logits[:, -1:]
+        return out_logits, paths

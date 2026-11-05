@@ -676,7 +676,7 @@ class CascadeMeshModel(nn.Module):
             self.res_ln_h3 = nn.LayerNorm(d_model)
         self.final_norm = nn.LayerNorm(d_model)
         self.lm_head = nn.Linear(d_model, vocab_pezzi, bias=True)
-        self.lm_head.weight = self.emb_v1.weight  # tied weight; bias separato
+        # self.lm_head.weight separato da emb_v1.weight per rotazione ortogonale Q_lic Watchman Keystone
 
         self.register_buffer(
             "centroids",

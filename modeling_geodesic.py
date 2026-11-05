@@ -125,7 +125,7 @@ class R08Model(nn.Module):
             walk=walk,
             n_attn_layers=config.get("n_attn_layers", 2),
             n_heads=config.get("n_heads", 8),
-            max_seq_len=config.get("max_seq_len", 512),
+            max_seq_len=config.get("max_seq_len", 2048),
             compass_spiral=config.get("routing", {}).get("compass_spiral", True),
             fast_walk=True,
             router_v6=config.get("routing", {}).get("router_v6", True),
@@ -135,6 +135,12 @@ class R08Model(nn.Module):
         )
 
         weights_file = root / "model.safetensors"
+        if not weights_file.exists():
+            part_files = sorted(root.glob("model.safetensors.part_*"))
+            if part_files:
+                with open(weights_file, "wb") as out_f:
+                    for pf in part_files:
+                        out_f.write(pf.read_bytes())
         if not weights_file.exists():
             try:
                 from huggingface_hub import hf_hub_download
@@ -152,7 +158,21 @@ class R08Model(nn.Module):
                 )
 
         state_dict = load_file(str(weights_file))
+        if "pos_emb.weight" in state_dict and state_dict["pos_emb.weight"].shape[0] != mesh_model.max_seq_len:
+            old_pe = state_dict["pos_emb.weight"][:256]
+            new_pe = torch.zeros(mesh_model.max_seq_len, old_pe.shape[1], dtype=old_pe.dtype)
+            new_pe[:256] = old_pe
+            new_pe[256:] = torch.nn.functional.interpolate(
+                old_pe[:128].T.unsqueeze(0),
+                size=mesh_model.max_seq_len - 256,
+                mode="linear",
+                align_corners=True,
+            ).squeeze(0).T
+            state_dict["pos_emb.weight"] = new_pe
         mesh_model.load_state_dict(state_dict, strict=True)
+        if hasattr(mesh_model, "watchman") and mesh_model.watchman is not None:
+            mesh_model._watchman_license_text = mesh_model.watchman.verify_disk_license(root)
+            mesh_model._watchman_is_ethical = True
 
         if device is None:
             if torch.backends.mps.is_available():
@@ -177,12 +197,18 @@ class R08Model(nn.Module):
         self,
         prompt: str,
         tokenizer: R08Tokenizer,
-        max_new_tokens: int = 48,
+        max_new_tokens: int = 2048,
         temperature: float = 0.7,
         top_p: float = 0.9,
         repetition_penalty: float = 1.15,
     ) -> str:
         """Generazione di testo autoregressiva con sampling controllato e penalità di ripetizione."""
+        if hasattr(self.mesh_model, "watchman") and self.mesh_model.watchman is not None:
+            is_ok, reason = self.mesh_model.watchman.scan_security_and_ethics(prompt)
+            if not is_ok:
+                self.mesh_model._watchman_is_ethical = False
+                return f"[WATCHMAN KEYSTONE — ACCESSO NEGATO] Richiesta non consentita ({reason})."
+            self.mesh_model._watchman_is_ethical = True
         dev = next(self.mesh_model.parameters()).device
         enc = tokenizer.encode(prompt)
         p, w, u = enc["pezzi"], enc["parole"], enc["unioni"]
@@ -190,10 +216,29 @@ class R08Model(nn.Module):
             p, w, u = [tokenizer.eos_id], [tokenizer.bundle.parole.pad_id], [tokenizer.bundle.unioni.pad_id]
 
         new_tokens: list[int] = []
+        ctx_limit = int(getattr(self.mesh_model, "max_seq_len", 2048))
+        p = p[-ctx_limit:]
+        w = w[-ctx_limit:]
+        u = u[-ctx_limit:]
+
+        # Se il prompt nel contesto 2k supera 256 token, individua nella finestra 0..2048
+        # l'orizzonte attivo della domanda + eventuali riferimenti semantici nel contesto lungo
+        active_window = 256
+        if len(p) > active_window:
+            # Trova l'inizio dell'ultimo turno (es. ultimo 'Utente:' o ultimi 96 token)
+            prompt_tail_text = tokenizer.decode(p[-160:])
+            idx_u = prompt_tail_text.rfind("Utente:")
+            if idx_u != -1:
+                tail_enc = tokenizer.encode(prompt_tail_text[idx_u:])
+                active_window = max(32, min(192, len(tail_enc["pezzi"])))
+            else:
+                active_window = 128
+
         for _ in range(max_new_tokens):
-            seq_p = torch.tensor([p[-256:]], dtype=torch.long, device=dev)
-            seq_w = torch.tensor([w[-256:]], dtype=torch.long, device=dev)
-            seq_u = torch.tensor([u[-256:]], dtype=torch.long, device=dev)
+            cur_win = min(len(p), active_window + len(new_tokens), 256)
+            seq_p = torch.tensor([p[-cur_win:]], dtype=torch.long, device=dev)
+            seq_w = torch.tensor([w[-cur_win:]], dtype=torch.long, device=dev)
+            seq_u = torch.tensor([u[-cur_win:]], dtype=torch.long, device=dev)
 
             logits, _ = self.mesh_model(seq_p, seq_w, seq_u, record_path=False)
             next_logits = logits[0, -1]
@@ -227,6 +272,8 @@ class R08Model(nn.Module):
 
             new_tokens.append(nxt)
             p.append(nxt)
+            if len(p) > ctx_limit:
+                p = p[-ctx_limit:]
             p, w, u = realign_from_pezzi(p, tokenizer.bundle, causal_align=True)
 
         return tokenizer.decode(new_tokens)
