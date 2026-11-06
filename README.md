@@ -43,7 +43,7 @@ inference: false
 ---
 
 > ### 💼 Investment, Compute Grants & Enterprise Licensing (Investimenti & Partnership Industriali)
-> 🇬🇧 **Sentinel** is scaling the **Geodesic Pyramidal Sphere Architecture (`R-08`)** from 50M to **110M–1B+ parameters**, backed by **18 industrial patent filings** (Non-Euclidean Geodesic Mesh, Isomorphic `SSvvv` Lexical-Voice Engine, Post-Quantum Tamper-Resistant Keystone Security, Edge & Autonomous Systems).  
+> 🇬🇧 **Sentinel** is scaling the **Geodesic Pyramidal Sphere Architecture (`R-08`)** from 50M to **110M–1B+ parameters**, with **patent applications filed at the Italian Patent and Trademark Office (UIBM)**.  
 > **Open to Seed / Deep-Tech Investment, GPU/TPU Compute Grants, and Enterprise R&D Partnerships.**  
 > 🇮🇹 **Aperto a Investimenti Seed / Deep-Tech, Grant Computazionali GPU/TPU e Licenze Industriali Enterprise.**  
 > 📩 **Contact Founder & Inventor Thomas Seri:** 🌐 **[www.sentinelhub.eu](https://www.sentinelhub.eu)** | 🐙 **[GitHub (@Thomasseri)](https://github.com/Thomasseri)** | 🤗 **[Hugging Face (@SentinelHub)](https://huggingface.co/SentinelHub)** | 💬 **[Open an Inquiry / Issue](https://github.com/Thomasseri/R-08/issues/new)**
@@ -83,19 +83,18 @@ print(risposta)
 
 ---
 
-## 🏆 I Nuovi Record di Laboratorio di Sentinel R-08 v7.2a
+## 📊 Risultati di Laboratorio di Sentinel R-08 v7.2a
 
-Addestrato **100% DA ZERO (Tabula Rasa, seed 1234)** per **185.000 step** (~740M token Chinchilla mix) e rifinito con **10.000 step di Midtraining** su dataset purificato e laico (`midtrain_v4_100m`), Sentinel R-08 v7.2a ha stabilito il **nuovo record assoluto per l'architettura geodetica**:
+Addestrato **100% DA ZERO (Tabula Rasa, seed 1234)** per **185.000 step** (~740M token Chinchilla mix) e rifinito con **10.000 step di Midtraining** su dataset purificato e laico (`midtrain_v4_100m`), Sentinel R-08 v7.2a ha ottenuto il **miglior risultato tra i modelli R-08** (il Transformer di controllo a 14 strati resta più accurato):
 
 | Benchmark / Metrica Scientifica | Sentinel R-08 v7 (44.5M · 2 strati) | Sentinel R-08 v7.2 (51.6M · Warm-Start) | 🌟 Sentinel R-08 v7.2a DA ZERO (51.6M) | Transformer Baseline (44.9M · 14 strati) | Guadagno & Bilancio R-08 v7.2a |
 | :--- | :---: | :---: | :---: | :---: | :--- |
-| **BLiMP-IT Grammatica Italiana** (3.481 coppie) | 80,95% | 82,02% | **82,51%** 🏆 | 85,84% | **Nuovo record geodetico (+1,56% su v7)** con soli 2 strati densi contro 14! |
-| **MultiBLiMP Italiano** (2.916 coppie) | 73,46% | 73,46% | **76,71%** 🏆 | 86,83% | **+3,25% netto e picco storico assoluto** per le reti sferiche! |
-| **TruthfulQA Anti-Allucinazione** (Zero-Shot) | **62,5%** (10/16) | 56,2% (9/16) | **56,2%** *(Fatti 4/4 100%, Scienza 3/4)* | 68,8% (11/16) | Zero allucinazioni fattuali (identità e fatti reali al 100%) |
+| **BLiMP-IT Grammatica Italiana** (3.481 coppie) | 80,95% | 82,02% | **82,51%** | 85,84% | Migliore tra gli R-08 (+1,56% su v7); Transformer +3,33 punti |
+| **MultiBLiMP Italiano** (2.916 coppie) | 73,46% | 73,46% | **76,71%** | 86,83% | +3,25% su v7; Transformer +10,12 punti |
+| **TruthfulQA Anti-Allucinazione** (Zero-Shot) | **62,5%** (10/16) | 56,2% (9/16) | **56,2%** *(Fatti 4/4 100%, Scienza 3/4)* | 68,8% (11/16) | Solo 16 domande: differenze non significative |
 | **Resistenza a Loop / Balbuzie** | Presente su loop lunghi | Eliminata ✅ | **Eliminata al 100%** ✅ | Assente | Convoluzioni Causali 1D ($k=4$) confermate perfette da zero |
-| **Memoria KV-Cache (512 ctx)** | **0,8 MB** | **0,8 MB** | **0,8 MB** 🏆 | 5,6 MB | **-85,7% di traffico RAM (7× più leggero)** |
-| **Consumo Energetico (Apple Silicon MPS)** | **2,30 mJ / tok** | **2,40 mJ / tok** | **2,40 mJ / tok** 🏆 | 3,30 mJ / tok | **-27,3% di energia risparmiata** rispetto al Transformer |
-| **Footprint RAM Totale in Inferenza** | **~120 MB** | **~140 MB** | **~140 MB** 🏆 | ~240 MB | Esecuzione nativa istantanea anche su memorie **DDR3 / DDR4 / Edge** |
+| **Memoria KV-Cache (512 ctx)** | **0,8 MB** | **0,8 MB** | **0,8 MB** | 5,6 MB | **-85,7% di traffico RAM (7× più leggero)** |
+| **Footprint RAM Totale in Inferenza** | **~120 MB** | **~140 MB** | **~140 MB** | ~240 MB | Esecuzione nativa istantanea anche su memorie **DDR3 / DDR4 / Edge** |
 
 ---
 
@@ -107,8 +106,7 @@ Addestrato **100% DA ZERO (Tabula Rasa, seed 1234)** per **185.000 step** (~740M
 | **Parametri Totali in `model.safetensors`** | **`51.975.444`** tensori totali salvati (composti da **`51.614.115` parametri neurali attivi** + **`361.329` buffer topologici** e indici di adiacenza dell'icosaedro geodetico) |
 | **Runtime di Esecuzione ** | **Motore Geometrico Nativo `modeling_geodesic.py`** (`trust_remote_code=True`). Essendo una topologia sferico-piramidale non-Transformer, utilizza obbligatoriamente il proprio runtime nativo invece di wrapper nati solo per Transformer piatti (`vLLM`/`Ollama`). |
 | **Finestra di Contesto Operativa** | **`256 – 512` token nativi** (scalabile fino a **`2.048` token** in inferenza con soli `0,8 MB – 3,2 MB` di KV-Cache). |
-| **Throughput & Efficienza Energetica** | **`~2.850 – 3.020 tok/s`** in pretraining / **`~140 tok/s`** in generazione singola su Apple Silicon (MPS), con consumo di **`2,40 mJ/token`** e footprint RAM di **`~140 MB`**. |
-| **Confronto con Baseline Internazionali** | Testato in Zero-Shot diretto anche contro **`Pythia-70M` (`70.4M`)** e **`GPT-2 Base` (`124.4M`)**: sulle probe fattuali italiane di TruthfulQA Zero-Shot, `R-08` raggiunge il **`56,2% – 62,5%` (Fatti 4/4 100%)** contro il `50,0%` (livello casuale) di `Pythia-70M` e `GPT-2 124M`, occupando fino a **22× meno KV-Cache** (`0,8 MB` vs `18,0 MB` di GPT-2). |
+| **Throughput & Efficienza Energetica** | **`~2.850 – 3.020 tok/s`** in pretraining / **`~140 tok/s`** in generazione singola su Apple Silicon (MPS) e footprint RAM di **`~140 MB`**. |
 | **Lingua & Licenza** | Italiano (`it`) · **R08 Non-Commercial Research & Ethical License v2.0** (Foro Esclusivo di Milano) |
 
 ---
